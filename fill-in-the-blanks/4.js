@@ -7,17 +7,13 @@ try {
 		log: [],
 		set: function(key, value) {
 			this.state[key] = value;
-			return { [key]: this.state[key] };
 		},
 		remove: function(key) {
-			if (!this.state.hasOwnProperty(key)) return null;
-			const oldValue = this.state[key]; // {a: b}
 			delete this.state[key];
-			return { [key]: oldValue };
 		},
 		renderState: function() {
 			const liElements = Object.keys(this.state)
-				.map((key) => `\n <li><code>${key}: ${value} </code></li>`)
+				.map((key) => `\n <li><code>${key}: ${this.state[key]} </code></li>`)
 				.reduce((allLis, liStr) => allLis + liStr, '');
 			return '<ul>' + liElements + '\n</ul>';
 		},
